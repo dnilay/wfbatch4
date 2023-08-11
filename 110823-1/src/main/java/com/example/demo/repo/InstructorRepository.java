@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.model.Instructor;
 
-//@Repository
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
 
 }
