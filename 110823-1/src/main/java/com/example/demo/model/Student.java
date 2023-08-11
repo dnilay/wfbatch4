@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,26 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "instructor")
-public class Instructor {
-
-	// annotate the class as an entity and map to db table
-
-	// define the fields
-
-	// annotate the fields with db column names
-
-	// ** set up mapping to InstructorDetail entity
-
-	// create constructors
-
-	// generate getter/setter methods
-
-	// generate toString() method
+@Table(name = "student")
+public class Student {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,15 +33,16 @@ public class Instructor {
 	@Column(name = "email")
 	private String email;
 
-	@OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH })
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+			CascadeType.REFRESH })
+	@JoinTable(name = "course_student", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<Course> courses;
 
-	public Instructor() {
+	public Student() {
 
 	}
 
-	public Instructor(String firstName, String lastName, String email) {
+	public Student(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -98,6 +88,20 @@ public class Instructor {
 		this.courses = courses;
 	}
 
-	// add convenience methods for bi-directional relationship
+	// add convenience method
 
+	public void addCourse(Course theCourse) {
+
+		if (courses == null) {
+			courses = new ArrayList<>();
+		}
+
+		courses.add(theCourse);
+	}
+
+	@Override
+	public String toString() {
+		return "Student{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
+				+ ", email='" + email + '\'' + '}';
+	}
 }
