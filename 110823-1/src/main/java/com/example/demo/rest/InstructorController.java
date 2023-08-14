@@ -10,33 +10,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Instructor;
-import com.example.demo.repo.InstructorRepository;
+import com.example.demo.service.InstructorService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/instructors")
-
+@AllArgsConstructor
 public class InstructorController {
 
-	private InstructorRepository instructorRepository;
-
-	// dependency injection
-	public InstructorController(InstructorRepository instructorRepository) {
-
-		this.instructorRepository = instructorRepository;
-	}
+	private final InstructorService instructorService;
 
 	@PostMapping
 	public Instructor createInstructor(@RequestBody Instructor instructor) {
 
-		return instructorRepository.save(instructor);
+		return instructorService.createInstructor(instructor);
 	}
 
 	@GetMapping("/{id}")
 	public Optional<Instructor> findInstructor(@PathVariable("id") int id) {
 
-		Optional<Instructor> o=instructorRepository.findById(id);
-		//Instructor i=o.get();
-		//System.out.println(i);
+		Optional<Instructor> o=instructorService.findInstructorById(id);
+		
 		return o;
 	}
 

@@ -14,24 +14,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "instructor")
 public class Instructor {
-
-	// annotate the class as an entity and map to db table
-
-	// define the fields
-
-	// annotate the fields with db column names
-
-	// ** set up mapping to InstructorDetail entity
-
-	// create constructors
-
-	// generate getter/setter methods
-
-	// generate toString() method
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -51,56 +42,5 @@ public class Instructor {
 			CascadeType.DETACH, CascadeType.REFRESH })
 	private List<Course> courses;
 
-	public Instructor() {
-
-	}
-
-	public Instructor(String firstName, String lastName, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public List<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
-
-	// add convenience methods for bi-directional relationship
-
+	
 }
