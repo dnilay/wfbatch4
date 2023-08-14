@@ -93,8 +93,5 @@ public class Course {
 		students.add(theStudent);
 	}
 
-	@Override
-	public String toString() {
-		return "Course{" + "id=" + id + ", title='" + title + '\'' + '}';
-	}
+
 }

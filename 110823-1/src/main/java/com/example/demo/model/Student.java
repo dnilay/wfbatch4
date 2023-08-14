@@ -99,9 +99,5 @@ public class Student {
 		courses.add(theCourse);
 	}
 
-	@Override
-	public String toString() {
-		return "Student{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
-				+ ", email='" + email + '\'' + '}';
-	}
+	
 }
