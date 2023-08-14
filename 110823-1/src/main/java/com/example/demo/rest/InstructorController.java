@@ -2,6 +2,7 @@ package com.example.demo.rest;
 
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,8 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/instructors")
 @AllArgsConstructor
+//CORS  Cross Origin resource Sharing
+@CrossOrigin(origins = "http://localhost:3000")
 public class InstructorController {
 
 	private final InstructorService instructorService;
